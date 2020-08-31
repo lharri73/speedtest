@@ -24,8 +24,8 @@ This project's setup has been simplified using Docker.
 
 1. Run the container
 	A start script has been provided in `start.sh`. It takes two input arguments
-		- The tag name of the image (in step 2, we tagged it as `speedtest`)
-		- The complete path of the results directory.
+	- The tag name of the image (in step 2, we tagged it as `speedtest`)
+	- The complete path of the results directory.
 	```bash
 	./start.sh speedtest /$path$/$to$/$results$/
 	```
