@@ -3,7 +3,8 @@ import sys
 from matplotlib import pyplot as plt
 import numpy as np
 import csv
-from datetime import datetime
+from datetime import datetime, timezone
+import pytz
 
 def main():
     if len(sys.argv) != 2:
@@ -19,7 +20,7 @@ def main():
                 row[2] = 0
             tmpArray = np.array(row, dtype="float")
             arr = np.vstack((arr, tmpArray))
-            times.append(datetime.utcfromtimestamp(int(row[0])))
+            times.append(datetime.fromtimestamp(int(row[0]), pytz.timezone('US/Eastern')))
 
     arr[:,3] /= 1024**2
     arr[:,4] /= 1024**2
