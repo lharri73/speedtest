@@ -24,12 +24,27 @@ def main():
 
     arr[:,3] /= 1024**2
     arr[:,4] /= 1024**2
+    rollingAverage = np.empty((arr.shape[0]-3, 3))
+
+    ## compute the rolling average over the last hour
+    rollingAverage[:,0] = np.convolve(arr[:,2], np.ones((4,))/4, mode='valid')
+    rollingAverage[:,1] = np.convolve(arr[:,4], np.ones((4,))/4, mode='valid')
+    rollingAverage[:,2] = np.convolve(arr[:,3], np.ones((4,))/4, mode='valid')
     
     plt.plot(times, arr[:,2], label="Packetloss")
     plt.plot(times, arr[:,3], label="Upload")
     plt.plot(times, arr[:,4], label="Download")
     plt.gcf().autofmt_xdate()
-    plt.title("Quarry Trail Internet Speeds")
+    plt.title("Internet Speeds")
+    plt.legend()
+    plt.show(block=False)
+
+    plt.figure()
+    plt.plot(times[:-3], rollingAverage[:,0], label="Packetloss")
+    plt.plot(times[:-3], rollingAverage[:,1], label="Upload")
+    plt.plot(times[:-3], rollingAverage[:,2], label="Download")
+    plt.gcf().autofmt_xdate()
+    plt.title("Averaged Internet Speeds")
     plt.legend()
     plt.show()
 
