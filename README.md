@@ -27,7 +27,7 @@ This project's setup has been simplified using Docker.
 	- The tag name of the image (in step 2, we tagged it as `speedtest`)
 	- The complete path of the results directory.
 	```bash
-	./start.sh speedtest /$path$/$to$/$results$/
+	./start.sh speedtest $/path/to/results/$
 	```
 	This will print the UUID of the spawned container
 
